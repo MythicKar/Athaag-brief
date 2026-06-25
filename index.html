@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Athaag Brief — Issue 02</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --crimson: #9A0029;
+    --navy: #14232D;
+    --navy-mid: #1E3341;
+    --sand: #EFE9E0;
+    --sand-mid: #D9CCB6;
+    --ink: #1A1A1A;
+    --ink-mid: #3D3D3D;
+    --ink-light: #6B6B6B;
+    --rule: #D0C8BC;
+    --white: #FFFFFF;
+    --page-width: 794px;
+    --col-padding: 52px;
+  }
+
+  body {
+    background: #E8E4DF;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: var(--page-width);
+    margin: 40px auto;
+    background: var(--white);
+    box-shadow: 0 4px 40px rgba(0,0,0,0.13);
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--crimson);
+    padding: 36px var(--col-padding) 30px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    right: -60px;
+    top: -60px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    border: 40px solid rgba(255,255,255,0.07);
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    right: 40px;
+    bottom: -30px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 20px solid rgba(255,255,255,0.05);
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 1;
+  }
+
+  .brand-name {
+    font-family: 'EB Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--sand);
+    letter-spacing: 0.01em;
+    line-height: 1;
+  }
+
+  .brand-name strong { font-weight: 700; }
+
+  .brand-tagline {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--sand-mid);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  .issue-meta {
+    text-align: right;
+    z-index: 1;
+    position: relative;
+  }
+
+  .issue-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--sand-mid);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .issue-date {
+    font-family: 'EB Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--sand);
+    margin-top: 4px;
+    line-height: 1;
+  }
+
+  .header-topics {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(239,233,224,0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+
+  .topics-label {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--sand-mid);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .topic-pill {
+    font-size: 10px;
+    font-weight: 500;
+    color: rgba(239,233,224,0.85);
+    padding: 3px 10px;
+    border: 1px solid rgba(239,233,224,0.25);
+    border-radius: 2px;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── SECTION BREAK BAND ── */
+  .section-band {
+    background: var(--navy);
+    padding: 10px var(--col-padding);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .band-title {
+    font-size: 9.5px;
+    font-weight: 700;
+    color: var(--sand-mid);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .band-page {
+    font-size: 10px;
+    font-weight: 600;
+    color: #7A8D97;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 36px var(--col-padding);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section:last-of-type {
+    border-bottom: none;
+  }
+
+  .section-eyebrow {
+    font-size: 9.5px;
+    font-weight: 700;
+    color: var(--crimson);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-eyebrow::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .section-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+
+  .section-title-large {
+    font-family: 'EB Garamond', serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.25;
+    margin-bottom: 18px;
+  }
+
+  .body-text {
+    font-size: 14px;
+    color: var(--ink-mid);
+    line-height: 1.85;
+  }
+
+  /* ── ABOUT / TAGS ── */
+  .about-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 18px;
+  }
+
+  .tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--crimson);
+    background: var(--sand);
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  /* ── PULSE ── */
+  .pulse-list {
+    list-style: none;
+  }
+
+  .pulse-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 14px;
+    color: var(--ink-mid);
+    line-height: 1.7;
+  }
+
+  .pulse-list li:first-child { padding-top: 0; }
+  .pulse-list li:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .pulse-list li::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--crimson);
+    margin-top: 9px;
+    flex-shrink: 0;
+  }
+
+  /* ── ARC LABEL ── */
+  .arc-label {
+    display: inline-block;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--navy);
+    background: #E1E1E1;
+    padding: 3px 9px;
+    border-radius: 2px;
+    margin-bottom: 14px;
+  }
+
+  /* ── CASE TAG ── */
+  .case-tag {
+    display: inline-block;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--crimson);
+    padding: 3px 9px;
+    border-radius: 2px;
+    margin-bottom: 14px;
+  }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box {
+    background: var(--navy);
+    padding: 20px 24px;
+    margin-top: 20px;
+    border-left: 3px solid var(--crimson);
+  }
+
+  .insight-label {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--sand-mid);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .insight-text {
+    font-size: 14px;
+    color: var(--sand);
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  /* ── STATS ── */
+  .stat-row {
+    display: flex;
+    gap: 0;
+    margin-top: 22px;
+    border: 1px solid var(--rule);
+  }
+
+  .stat-item {
+    flex: 1;
+    padding: 16px 20px;
+    text-align: center;
+    border-right: 1px solid var(--rule);
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-number {
+    font-family: 'EB Garamond', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--crimson);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 5px;
+  }
+
+  /* ── BLOCKQUOTE ── */
+  .pull-quote {
+    border-left: 3px solid var(--crimson);
+    background: var(--sand);
+    padding: 14px 20px;
+    margin-top: 22px;
+  }
+
+  .pull-quote p {
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--navy);
+    line-height: 1.6;
+  }
+
+  /* ── READ MORE ── */
+  .read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--crimson);
+    text-decoration: none;
+    margin-top: 16px;
+    letter-spacing: 0.03em;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .read-more:hover { border-bottom-color: var(--crimson); }
+
+  .read-more svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* ── DATA POINT ── */
+  .data-box {
+    background: var(--navy);
+    padding: 28px 32px;
+    margin-top: 4px;
+  }
+
+  .data-number {
+    font-family: 'EB Garamond', serif;
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--crimson);
+    line-height: 1;
+  }
+
+  .data-descriptor {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--sand);
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+
+  .data-context {
+    font-size: 13px;
+    color: var(--sand-mid);
+    line-height: 1.75;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(217,204,182,0.25);
+  }
+
+  /* ── READING LIST ── */
+  .reading-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .reading-item:first-child { padding-top: 0; }
+  .reading-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .reading-num {
+    font-family: 'EB Garamond', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--sand-mid);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 28px;
+    padding-top: 1px;
+  }
+
+  .reading-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.4;
+  }
+
+  .reading-source {
+    font-size: 12px;
+    color: var(--ink-light);
+    margin-top: 3px;
+  }
+
+  /* ── RADAR ── */
+  .radar-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .radar-pill {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--navy);
+    background: var(--sand);
+    padding: 6px 14px;
+    border-radius: 2px;
+    border: 1px solid var(--sand-mid);
+  }
+
+  .radar-next {
+    font-size: 13px;
+    color: var(--ink-light);
+    line-height: 1.7;
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--navy);
+    padding: 20px var(--col-padding);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-left {
+    font-size: 12px;
+    color: #7A8D97;
+    letter-spacing: 0.02em;
+  }
+
+  .footer-right {
+    font-size: 12px;
+    color: var(--sand-mid);
+    display: flex;
+    gap: 20px;
+  }
+
+  .footer-right a {
+    color: var(--sand-mid);
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <div class="brand-name">The <strong>Athaag</strong> Brief</div>
+        <div class="brand-tagline">Strategic Clarity for Complex Ecosystems</div>
+      </div>
+      <div class="issue-meta">
+        <div class="issue-label">Issue 02 &middot; Monthly</div>
+        <div class="issue-date">September 2026</div>
+      </div>
+    </div>
+    <div class="header-topics">
+      <span class="topics-label">This issue</span>
+      <span class="topic-pill">Medical devices market entry</span>
+      <span class="topic-pill">Rural retail investment</span>
+      <span class="topic-pill">Economic corridors</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="section">
+    <div class="section-eyebrow">About Athaag</div>
+    <div class="body-text">
+      India is one of the most complex markets in the world to enter — not because of a lack of opportunity, but because the rules, relationships, and realities on the ground are different from anywhere else. Athaag Advisory helps investors, companies, and development institutions navigate that complexity. We combine rigorous market analysis with on-the-ground insight to turn ambiguous opportunities into clear, executable strategies.
+    </div>
+    <div class="about-tags">
+      <span class="tag">Market systems</span>
+      <span class="tag">Market entry</span>
+      <span class="tag">Investment facilitation</span>
+      <span class="tag">Economic development</span>
+    </div>
+  </div>
+
+  <!-- FIRM PULSE -->
+  <div class="section">
+    <div class="section-eyebrow">Firm Pulse</div>
+    <ul class="pulse-list">
+      <li>Delivered market entry roadmap for a medical devices company seeking to expand into Tier 2 hospitals across India — strategy now in implementation phase</li>
+      <li>Published findings from three-state rural retail investment assessment — shared with two development finance institutions</li>
+      <li>Invited to contribute to an economic corridors working group convened by a bilateral development agency</li>
+      <li>New engagement starting: regulatory mapping for a consumer goods company entering food processing in India</li>
+    </ul>
+  </div>
+
+  <!-- PAGE 1 BAND -->
+  <div class="section-band">
+    <div class="band-title">Feature: Market Entry in Focus</div>
+    <div class="band-page">Page 1 of 2</div>
+  </div>
+
+  <!-- MACRO TRIGGER -->
+  <div class="section">
+    <div class="arc-label">The macro trigger</div>
+    <div class="section-title-large">India's medical devices sector is growing fast — but most of that growth is bypassing the hospitals that need it most</div>
+    <div class="body-text">
+      India's medical devices market is expected to reach $50 billion by 2030, driven by rising incomes and growing demand for diagnostics, surgical equipment, and patient monitoring systems. But almost all of that growth is concentrated in large private hospitals in metro cities. The 25,000+ secondary and district hospitals across Tier 2 and 3 India — which serve the majority of the country's population — have limited access to modern medical equipment, partly because global manufacturers don't know how to reach them, and partly because the procurement, financing, and after-sales service models that work in Mumbai don't work in Patna or Raipur.
+    </div>
+  </div>
+
+  <!-- ADVISORY LENS -->
+  <div class="section">
+    <div class="arc-label">The advisory lens</div>
+    <div class="section-title">What smart market entry looks like in this context</div>
+    <div class="body-text">
+      Entering Tier 2 and 3 hospital markets is not about reducing price. Most barriers are structural: hospitals lack dedicated procurement officers, financing options for capital equipment are limited, and after-sales service outside major cities is thin. Companies that succeed don't replicate their metro playbook — they identify a distribution partner with existing hospital relationships, adapt their financing model to allow instalments or lease structures, and build service coverage into the commercial arrangement from day one.
+    </div>
+    <div class="insight-box">
+      <div class="insight-label">Athaag's view</div>
+      <div class="insight-text">The Tier 2 hospital market rewards patience and local relationships over marketing spend. One trusted distribution partner with genuine hospital access is worth more than a national sales team without it.</div>
+    </div>
+  </div>
+
+  <!-- PROOF POINT -->
+  <div class="section">
+    <div class="arc-label">The proof point</div>
+    <span class="case-tag">Medical Devices · Tier 2 Hospitals</span>
+    <div class="section-title">Market entry roadmap for a medical devices company</div>
+    <div class="body-text">
+      A medical devices manufacturer approached us wanting to expand beyond metros but unsure where to start. We conducted a demand assessment, mapped distribution networks, and assessed ten potential partners on hospital relationships, technical capacity, and financial health. We also modelled three commercial structures — outright sale, lease, and revenue-share — identifying which worked best for the target segment.
+    </div>
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="stat-number">80</div>
+        <div class="stat-label">Hospitals assessed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">4</div>
+        <div class="stat-label">States covered</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Commercial models</div>
+      </div>
+    </div>
+    <div class="pull-quote">
+      <p>"We assumed price was the main barrier. The research showed it was actually after-sales service coverage — something we could fix with the right partner."</p>
+    </div>
+    <a href="#" class="read-more">
+      Read full case study
+      <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+
+  <!-- PAGE 2 BAND -->
+  <div class="section-band">
+    <div class="band-title">Private Development Investment + Intelligence</div>
+    <div class="band-page">Page 2 of 2</div>
+  </div>
+
+  <!-- RURAL RETAIL -->
+  <div class="section">
+    <div class="section-eyebrow">Private Development Investment</div>
+    <div class="section-title-large">Can private capital make rural retail work in India?</div>
+    <div class="body-text">
+      In much of rural India, the shop at the end of the village lane is still the main point of access for everything from cooking oil to medicines. These kirana stores serve hundreds of millions of people but operate with almost no formal credit, limited product variety, and no data on what sells. We spent three months mapping rural retail investment opportunities across Rajasthan, MP, and UP — assessing which models have commercially viable unit economics and which interventions would most meaningfully improve incomes for both retailers and the communities they serve.
+    </div>
+    <a href="#" class="read-more">
+      Read the full investment brief
+      <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+
+  <!-- DATA POINT -->
+  <div class="section">
+    <div class="section-eyebrow">Sector Data Point</div>
+    <div class="data-box">
+      <div class="data-number">12M</div>
+      <div class="data-descriptor">kirana stores across India — only 3% have access to formal working capital credit · RBI 2025</div>
+      <div class="data-context">The vast majority of India's rural retailers finance their inventory through informal moneylenders at 30–40% annual interest. Formalising even a fraction of that credit access would meaningfully improve retailer margins and product availability for rural consumers.</div>
+    </div>
+  </div>
+
+  <!-- READING LIST -->
+  <div class="section">
+    <div class="section-eyebrow">What We're Reading</div>
+    <div class="reading-item">
+      <div class="reading-num">01</div>
+      <div>
+        <div class="reading-title">India medical devices market outlook 2030</div>
+        <div class="reading-source">Invest India · August 2026</div>
+      </div>
+    </div>
+    <div class="reading-item">
+      <div class="reading-num">02</div>
+      <div>
+        <div class="reading-title">Formalising India's informal retail economy</div>
+        <div class="reading-source">ICRIER · July 2026</div>
+      </div>
+    </div>
+    <div class="reading-item">
+      <div class="reading-num">03</div>
+      <div>
+        <div class="reading-title">Private capital in frontier markets — what works</div>
+        <div class="reading-source">IFC EMCompass · June 2026</div>
+      </div>
+    </div>
+    <a href="#" class="read-more" style="margin-top:18px">
+      View full reading list
+      <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+
+  <!-- ON THE RADAR -->
+  <div class="section">
+    <div class="section-eyebrow">On the Radar</div>
+    <div class="radar-grid">
+      <span class="radar-pill">CDSCO devices regulation update</span>
+      <span class="radar-pill">PM Gati Shakti corridor review</span>
+      <span class="radar-pill">RBI MSME credit guidelines</span>
+      <span class="radar-pill">FDI policy in retail</span>
+      <span class="radar-pill">Ayushman Bharat device procurement</span>
+    </div>
+    <div class="radar-next">
+      <strong>Next issue:</strong> regulatory mapping in food processing — what it takes for a foreign company to manufacture in India. Reach out if relevant.
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">Athaag Advisory &nbsp;·&nbsp; New Delhi &nbsp;·&nbsp; athaagadvisory.com</div>
+    <div class="footer-right">
+      <a href="#">Reply to connect</a>
+      <a href="#">Unsubscribe</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
